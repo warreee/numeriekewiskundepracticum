@@ -1,4 +1,5 @@
 %% Vast deelinterval
+%(a)
 f1 = @exp;
 f2 = @(x) 1./(1+(x.^2));
 t1 = trapezium(f1,-1,1,100);
@@ -23,17 +24,19 @@ hold on
 loglog(hexp, sexp,'r')
 loglog(hexp, (hexp).^4,'g')
 loglog(hexp, (hexp).^2,'y')
+%Door de loglog-plot te gebruiken worden de functies gelineariseerd. We
+%(b)
+% De fout gedraagt zich voor de trapeziumregel als O(h^2) en voor de regel
+% van Simpson als O(h^4). (Gedrag nog verklaren via handboek.)
 %% Adaptieve routine
-%a
+%(a)
 f1 = @exp;
 f2 = @(x) 1./(1+(x.^2));
-ta1 = trapezium_adaptief(f1,-1,1,10^-8)
-sa1 = simpson_adaptief(f1,-1,1,10^-8)
-ta2 = trapezium_adaptief(f2,-5,5,10^-8)
-sa2 = simpson_adaptief(f2,-5,5,10^-8)
-e1;
-e2;
-%b
+ta1 = trapezium_adaptief(f1,-1,1,10^-8);
+sa1 = simpson_adaptief(f1,-1,1,10^-8);
+ta2 = trapezium_adaptief(f2,-5,5,10^-8);
+sa2 = simpson_adaptief(f2,-5,5,10^-8);
+%(b) Dit stuk moeten we nog deftig afmaken.
 %echte waarde is 1
 format long
 f3 = @ (x) sin(2*pi*x).^2;
@@ -47,28 +50,64 @@ ta3 = trapezium_adaptief(f4,0,1,10^-8)
 sa3 = simpson_adaptief(f4,0,1,10^-8)
 Q = quad(f4,0,1,10^-8)
 % quad gebruikt een stopcriterium als het aantal recursies te veel wordt.
-% uitvoeringstijd
+%% uitvoeringstijd
+% dit stuk gaat heel traag als je het uitvoert dus waarschijnlijk ergens
+% een fout.
 f2 = @(x) 1./(1+(x.^2));
 Reps = 10;
 averagetime1 = 0;
 averagetime2 = 0;
+averagetime3 = 0;
 tic;
 for i = 1:Reps
-    ta2 = trapezium_adaptief(f2,-5,5,10^-8);
+    t = trapezium_adaptief(f2,-5,5,10^-8);
 end
 averagetime1 = toc/Reps
 tic;
 for i = 1:Reps
-    sa2 = simpson_adaptief(f2,-5,5,10^-8);
+    s = simpson_adaptief(f2,-5,5,10^-8);
 end
 averagetime2 = toc/Reps
+tic;
+for i = 1:Reps
+    q = quad(f2,-5,5,10^-8);
+end
+averagetime3 = toc/Reps
+%(d)
+for i=1:10
+    x(i) = i;
+    Reps = 10;
+    averagetrapezium(i) = 0;
+    tic;
+    for j = 1:Reps
+    ta = trapezium_adaptief(f2,-5,5,10^-i);
+    end
+    averagetrapezium(i) = toc/Reps;
+end
+averagetrapezium
 for i=1:10
     Reps = 10;
     averagesimpson(i) = 0;
     tic;
     for j = 1:Reps
-    ta2 = simpson_adaptief(f2,-5,5,10^-i);
+    sa = simpson_adaptief(f2,-5,5,10^-i);
     end
     averagesimpson(i) = toc/Reps;
 end
-averagesimpson;
+averagesimpson
+for i=1:10
+    Reps = 10;
+    averagequad(i) = 0;
+    tic;
+    for j = 1:Reps
+    qa = quad(f2,-5,5,10^-i);
+    end
+    averagequad(i) = toc/Reps;
+end
+averagequad
+%nog een betere schaal vinden
+loglog(x,averagetrapezium, 'b')
+hold on
+loglog(x,averagesimpson, 'r')
+loglog(x,averagequad, 'y')
+%(e) en (f) moeten nog gebeuren
