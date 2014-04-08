@@ -10,7 +10,6 @@ function [ Aster,bster ] = stelsel_monomiaal_exp(n)
 mu = 2./(1:2*n+1); mu(2:2:end) = 0;
 Aster = hankel(mu(1:n+1),mu(n+1:end));
 
-%Joni is soms een beetje raar
 
 N = 300;
 K = 100;

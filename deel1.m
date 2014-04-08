@@ -11,20 +11,30 @@ e1 = exp(1) - exp(-1);
 e2 = atan(5) - atan(-5);
 
 for i = 1:100
+    % Te plotten vectoren voor functie 1
     texp(i) = abs(e1-trapezium(f1,-1,1,2*i));
     sexp(i) = abs(e1-simpson(f1,-1,1,2*i));
+    hexp(i) = 1/i;
+    % Te plotten vectoren voor functie 2
     tfun(i) = abs(e2-trapezium(f2,-5,5,2*i));
     sfun(i) = abs(e2-simpson(f2,-5,5,2*i));
-    hexp(i) = 1/i;
     hfun(i) = 5/i;
 end
 axis([0,1,0,1])
 loglog(hexp, texp, 'b')
 hold on
 loglog(hexp, sexp,'r')
-loglog(hexp, (hexp).^4,'g')
-loglog(hexp, (hexp).^2,'y')
-%Door de loglog-plot te gebruiken worden de functies gelineariseerd. We
+loglog(hexp, (hexp).^4,'r--')
+loglog(hexp, (hexp).^2,'b--')
+
+axis([0,5,0,5])
+semilogy(hfun, tfun, 'b')
+hold on
+plot(hfun, sfun,'r')
+plot(hfun, (hfun).^2,'b--')
+plot(hfun, (hfun).^4,'r--')
+
+%Door de loglog-plot te gebruiken worden de functies gelineariseerd.
 %(b)
 % De fout gedraagt zich voor de trapeziumregel als O(h^2) en voor de regel
 % van Simpson als O(h^4). (Gedrag nog verklaren via handboek.)
