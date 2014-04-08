@@ -75,7 +75,7 @@ end
 averagetime3 = toc/Reps
 %(d)
 for i=1:10
-    x(i) = i;
+    x(i) = 10^-i;
     Reps = 10;
     averagetrapezium(i) = 0;
     tic;
@@ -105,7 +105,6 @@ for i=1:10
     averagequad(i) = toc/Reps;
 end
 averagequad
-%nog een betere schaal vinden
 loglog(x,averagetrapezium, 'b')
 hold on
 loglog(x,averagesimpson, 'r')
