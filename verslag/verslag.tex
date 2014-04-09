@@ -1,6 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 
 \usepackage{graphicx}
+\usepackage{sidecap}
 \usepackage{mathtools}
 %Om grotere integralen te krijgen
 \usepackage{relsize}
@@ -15,6 +16,8 @@
 \usepackage{wrapfig}
 \usepackage{caption}
 \usepackage{subcaption}
+%Kan er voor zorgen dat een figuur op de exacte plaats staat:
+\usepackage{float}
 
 \begin{document}
 \title{\Huge Numerieke Wiskunde}
@@ -40,4 +43,20 @@
 \section{Deel 1: numerieke integratie}
 \subsection{Vast Deelinterval}
 \subsubsection*{(a) Benadering van de integralen $\mathop{\mathlarger{\int\limits_{-1}^1e^xdx}}$ en  $\mathop{\mathlarger{\int\limits_{-5}^5\frac{1}{1+x^2}}}$}
+
+\begin{figure}[H]
+
+	\begin{subfigure}{0.5\textwidth}
+	\includegraphics[width=\textwidth]{11a1.png}
+	\caption*{$\int\limits_{-1}^1e^xdx$ met de trapeziumbenadering in het blauw en met de simpsonbenadering in het rood.}
+	\end{subfigure}
+	%Laat hier geen lijnen tussen anders komen ze niet meer horizontaal gelijk
+	\begin{subfigure}{0.5\textwidth}
+	\includegraphics[width=\textwidth]{11a2.png}
+	\caption*{$\int\limits_{-5}^5\frac{1}{1+x^2}$ met de trapeziumbenadering in het blauw en met de simpsonbenadering in het rood.}
+	\end{subfigure}
+
+\end{figure}
+
+
 \end{document}
