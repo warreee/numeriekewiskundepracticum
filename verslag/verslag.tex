@@ -20,6 +20,7 @@
 \usepackage{float}
 
 \begin{document}
+\begin{titlepage}
 \title{\Huge Numerieke Wiskunde}
 \author{Joni Allaert\\
 		Ward Schodts\\
@@ -29,7 +30,6 @@
 \maketitle
 \thispagestyle{empty}
 
-\newcount\mycount
 \begin{center}
 
 \includegraphics[scale=0.4]{KULzwart.png}
@@ -39,8 +39,9 @@
 \Large Professor Dr. ir. Marc Van Barel
 \vfill
 \end{center}
-\titlepage
-\section{Deel 1: numerieke integratie}
+\end{titlepage}
+
+\section{Deel 1: Numerieke integratie}
 \subsection{Vast Deelinterval}
 \subsubsection*{(a) Benadering van de integralen $\mathop{\mathlarger{\int\limits_{-1}^1e^xdx}}$ en  $\mathop{\mathlarger{\int\limits_{-5}^5\frac{1}{1+x^2}}}$}
 
@@ -57,7 +58,87 @@
 	\end{subfigure}
 
 \end{figure}
+
+Om een duidelijk beeld te krijgen van de benaderingen, hebben we in het geval van de exponenti\"ele functie een loglog-plot genomen en voor de andere functie een semilogy-plot. Het doel was om de lijnen zo veel mogelijk te linearisren. In het geval van de tweede functie was dit echter niet mogelijk.
+
 \subsubsection*{(b) De waardes $k$ in $O(h^k$) voor de integratieregels}
+
+De fout die veroorzaakt wordt bij de trapeziumregel gedraagt zich als $O(h^2)$. De verklaring hiervoor is dat de integratiefout bij de trapeziumregel te schrijven is als \[ F_n = -\dfrac{(b-a)^3}{12n^2}f^{(2)}(\eta) \] voor een $\eta \in (a,b)$. De fout gedraagt zich bijgevolg als $O(n^{-2})$. Wat hetzelfde is als $O(h^2)$, per definitie van $h$.
+\\
+De fout veroorzaakt door de regel van Simpson gedraagt zich als $O(h^4)$. We kunnen immers de integratiefout bij de Simpsonregel schrijven als \[ F_n = -\dfrac{(b-a)^5}{180n^4}f^{(4)}(\eta) \] voor een $\eta \in (a,b)$. De fout gedraagt zich dan als $O(n^{-4})$. Dit is, per definitie van $h$, hetzelfde als $O(h^4)$.
+
+\begin{figure}[H]
+
+	\begin{subfigure}{0.5\textwidth}
+	\includegraphics[width=\textwidth]{11b1.png}
+	\caption*{$\int\limits_{-1}^1e^xdx$ het gedrag van de trapeziumbenadering met een blauwe stippellijn en het gedrag van de simpsonbenadering met een rode stippellijn.}
+	\end{subfigure}
+	%Laat hier geen lijnen tussen anders komen ze niet meer horizontaal gelijk
+	\begin{subfigure}{0.5\textwidth}
+	\includegraphics[width=\textwidth]{11b2.png}
+	\caption*{$\int\limits_{-5}^5\frac{1}{1+x^2}$ het gedrag van de trapeziumbenadering met een blauwe stippellijn en het gedrag van de simpsonbenadering met een rode stippellijn.}
+	\end{subfigure}
+
+\end{figure}
+
+\subsection{Adaptieve Routine}
+
+\subsubsection*{(b) Het probleem bij $\mathop{\mathlarger{\int\limits_{-1}^1sin(2\pi x)^2dx}}$}
+
+\subsubsection*{(c) Het probleem bij $\mathop{\mathlarger{\int\limits_{0}^1\frac{1}{\sqrt(x)}dx}}$}
+
+\subsubsection*{(d) De uitvoeringstijd in functie van e }
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{12d1.png}
+	\caption*{De uitvoeringstijden van trapezium, Simpson en quad in respectievelijke kleuren blauw, rood en geel}
+	\end{figure}
+
+\section{Deel 2: Kleinste kwadraten benadering van een functie}
+\subsection{Veeltermbenadering in monomiaalbasis}
+\subsubsection*{(d) De fout $||f-g||$ in functie van de graad}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{22d1.png}
+	\caption*{}
+	\end{figure}
+	
+We hebben hier gekozen voor een semilogy-plot, omdat op deze figuur de lijnen het meest recht liepen.
+
+\subsubsection*{(e) Benaderings- of abrekingsfout?}
+
+Het eerste, dalende deel is te wijten aan de benaderingsfouten. Dit stuk daalt, want als de graad stijgt kunnen we de functie steeds beter en beter benaderen. Vanaf een bepaald moment (hier bij een fout van $10^{-6}$) nemen echter de afrondingsfouten de overhand en gaat de totale fout weer stijgen. Het stijgende tweede deel is dus te wijten aan afrondingsfouten.
+
+\subsubsection*{(f) Convergentiesnelheid}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{22f1.png}
+	\caption*{}
+	\end{figure}
+	
+De convergentiesnelheid gedraagt zich als $O(8^{-n})$ met $n$ de graad van $g$.
+
+\subsubsection*{(h) Perturbaties op A en b}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{22h1.png}
+	\caption*{Perturbaties op A(rood), b(blauw)}
+	\end{figure}
+
+De groene lijn geeft aan waar $10^{-8}$. We kunnen dus duidelijk zien dat op veelvoud na $10^{-8}$ zijn. Met andere woorden ze zijn van grootorde $10^{-8}$.
+
+\subsubsection*{(i) perturbatie op a}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{22i1.png}
+	\caption*{Perturbaties op a(geel) en tol vermenigvuldigd met het conditiegetal(groen) bijgevoegd}
+	\end{figure}
+	
 
 
 \end{document}
