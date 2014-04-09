@@ -22,14 +22,14 @@ semilogy(x,e)
 hold on
 semilogy(x,6.*(8.^(-x)),'r')
 %% (g)
-[A2,b2] = stelsel_monomiaal_exp(20);
-a2 = zeros(20,20);
+[Aster,bster] = stelsel_monomiaal_exp(20);
+aster = zeros(20,20);
 for i = 1:20
-    M = horzcat(A2(1:i,1:i),b2(1:i));
+    M = horzcat(Aster(1:i,1:i),bster(1:i));
     [Q,R] = qr(M);
     x = asubst(R);
     n = length(x);
-    a2(1:n,i) = x;
+    aster(1:n,i) = x;
 end
 [A,b] = stelsel_monomiaal(@exp,20);
 a = zeros(20,20);
@@ -44,9 +44,9 @@ delta_a = zeros(20,1);
 delta_b = zeros(20,1);
 delta_A = zeros(20,1);
 for i = 1:20
-    delta_a(i,1) = norm(a(:,i)-a2(:,i),2)/norm(a2(:,i),2);
-    delta_b(i,1) = norm(b(1:i)-(b2(1:i))',2)/norm(b2(1:i),2);
-    delta_A(i,1) = norm(A(1:i,1:i)-A2(1:i,1:i),2)/norm(A2(1:i,1:i),2);
+    delta_a(i,1) = norm(a(:,i)-aster(:,i),2)/norm(aster(:,i),2);
+    delta_b(i,1) = norm(b(1:i)-(bster(1:i))',2)/norm(bster(1:i),2);
+    delta_A(i,1) = norm(A(1:i,1:i)-Aster(1:i,1:i),2)/norm(Aster(1:i,1:i),2);
 end
 %% (h)
 x = 1:20;
