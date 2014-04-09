@@ -14,6 +14,7 @@ for i = 1:100
     % Te plotten vectoren voor functie 1
     texp(i) = abs(e1-trapezium(f1,-1,1,2*i));
     sexp(i) = abs(e1-simpson(f1,-1,1,2*i));
+    % We geen 1/i mee omdat we als n al 2*i meegeven want 1-(-1)/2n = 1/n
     hexp(i) = 1/i;
     % Te plotten vectoren voor functie 2
     tfun(i) = abs(e2-trapezium(f2,-5,5,2*i));
@@ -24,16 +25,19 @@ axis([0,1,0,1])
 loglog(hexp, texp, 'b')
 hold on
 loglog(hexp, sexp,'r')
-loglog(hexp, (hexp).^4,'r--')
-loglog(hexp, (hexp).^2,'b--')
-xlabel('interval')
+%loglog(hexp, (hexp).^4,'r--')
+%loglog(hexp, (hexp).^2,'b--')
+xlabel('Breedte van het interval: h')
+ylabel('Absolute waarde van de integratiefout')
 
 axis([0,5,0,5])
 semilogy(hfun, tfun, 'b')
 hold on
 plot(hfun, sfun,'r')
-plot(hfun, (hfun).^2,'b--')
-plot(hfun, (hfun).^4,'r--')
+xlabel('Breedte van het interval: h')
+ylabel('Absolute waarde van de integratiefout')
+%plot(hfun, (hfun).^2,'b--')
+%plot(hfun, (hfun).^4,'r--')
 
 %Door de loglog-plot te gebruiken worden de functies gelineariseerd.
 %(b)
