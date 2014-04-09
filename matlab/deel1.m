@@ -26,6 +26,7 @@ hold on
 loglog(hexp, sexp,'r')
 loglog(hexp, (hexp).^4,'r--')
 loglog(hexp, (hexp).^2,'b--')
+xlabel('interval')
 
 axis([0,5,0,5])
 semilogy(hfun, tfun, 'b')
