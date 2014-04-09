@@ -1,7 +1,7 @@
 %% (c)
 [A,b] = stelsel_monomiaal(@exp,20)
 for i = 1:20
-    M = horzcat(A(1:i,1:i),(b(1:i))')
+    M = horzcat(A(1:i,1:i),(b(1:i))');
     [Q,R] = qr(M);
     a = asubst(R);
     g = poly2sym(a);
@@ -14,12 +14,16 @@ x = 1:20;
 %axis manual
 axis([0,20,10^-15,1])
 semilogy(x,e)
+xlabel('de graad: n')
+ylabel('de fout op g als benadering van f: e')
 %% (f)
 x = 1:20;
 %axis manual
 axis([0,20,10^-15,1])
 semilogy(x,e)
 hold on
+xlabel('de graad: n')
+ylabel('de fout op g als benadering van f: e')
 semilogy(x,6.*(8.^(-x)),'r')
 %% (g)
 [Aster,bster] = stelsel_monomiaal_exp(20);
@@ -53,6 +57,8 @@ x = 1:20;
 y = ones(20,1);
 semilogy(x,delta_b)
 hold on
+xlabel('De graad: n')
+ylabel('Perturbaties')
 semilogy(x,delta_A,'r')
 semilogy(x,10^-8.*y,'g')
 %% (i)
@@ -62,6 +68,8 @@ c = ones(20,1);
 c(i,1) = cond(A(1:i,1:i));
 semilogy(x,delta_b)
 hold on
+xlabel('De graad: n')
+ylabel('Perturbaties')
 semilogy(x,delta_A,'r')
 semilogy(x,delta_a,'y')
 semilogy(x,10^-8.*c,'g')

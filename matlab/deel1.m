@@ -120,6 +120,8 @@ end
 averagequad
 loglog(x,averagetrapezium, 'b')
 hold on
+xlabel('nauwkeurigheidsgraad: e')
+ylabel('Uitvoeringstijd')
 loglog(x,averagesimpson, 'r')
 loglog(x,averagequad, 'y')
 %(e) en (f) moeten nog gebeuren
