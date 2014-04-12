@@ -86,7 +86,26 @@ De fout veroorzaakt door de regel van Simpson gedraagt zich als $O(h^4)$. We kun
 \subsubsection*{(b) Het probleem bij $\mathop{\mathlarger{\int\limits_{-1}^1sin(2\pi x)^2dx}}$}
 
 \subsubsection*{(c) Het probleem bij $\mathop{\mathlarger{\int\limits_{0}^1\frac{1}{\sqrt(x)}dx}}$}
-
+Het probleem dat we hier krijgen is dat we de functie proberen te evalueren in punt waar hij niet gedefinieerd is. Namelijk het punt $x=0$. Hierdoor kijgen we een waarde $\infty$ voor zowel $I_1$ als $I_2$. Omdat er recursief altijd opnieuw wordt ge\"evalueerd wordt in $x=0$ dat telkens de waarde $\infty$ teruggeeft en bewerkingen hiermee ook $\infty$ teruggeven blijven we maar opnieuw recursief uitvoeren. Want de voorwaarde om met de recursie te stoppen: 
+\begin{verbatim}
+if abs(I1 - I2) < e
+\end{verbatim}
+is nooit voldaan dan.
+\\
+\\
+De methode \verb|quad| lost dit probleem op met volgende code:
+\begin{verbatim}
+% Fudge endpoints to avoid infinities.
+if ~isfinite(y(1))
+    y(1) = f(a+eps(superiorfloat(a,b))*(b-a),varargin{:});
+    fcnt = fcnt+1;
+end
+if ~isfinite(y(7))
+    y(7) = f(b-eps(superiorfloat(a,b))*(b-a),varargin{:});
+    fcnt = fcnt+1;
+end
+\end{verbatim}
+\verb|quad| checkt dus of de eindpunten niet oneindig zijn en als dit zo is
 \subsubsection*{(d) De uitvoeringstijd in functie van e }
 
 \begin{figure}[H]
