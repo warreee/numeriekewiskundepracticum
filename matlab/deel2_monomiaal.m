@@ -37,7 +37,7 @@ for i = 1:20
     [Q,R] = qr(M);
     x = asubst(R);
     n = length(x);
-    aster(1:n,i) = x
+    aster(1:n,i) = x;
 end
 [A,b] = stelsel_monomiaal(@exp,20);
 a = zeros(20,20);
