@@ -85,6 +85,20 @@ De fout veroorzaakt door de regel van Simpson gedraagt zich als $O(h^4)$. We kun
 
 \subsubsection*{(b) Het probleem bij $\mathop{\mathlarger{\int\limits_{-1}^1sin(2\pi x)^2dx}}$}
 
+\begin{wrapfigure}{R}{0.4\textwidth}
+	\begin{center}
+	\vspace{-85pt}
+	\includegraphics[width=0.5\textwidth]{12b.png}
+	\caption*{$sin(2\pi x)^2dx$ van $-1$ tot $1$}
+	\vspace{-25pt}
+	\end{center}
+	\end{wrapfigure}
+We krijgen bij onze zelf gedefinieerde functies telkens waarden die nul benaderen i.p.v. de werkelijke waarde 1. Dit komt omdat we bij onze eerste recursiestap telkans gaan evalueren in een punt van de functie waar deze nul is. Zo evalueren we bij de trapeziummethode in de punten -1 en 1 voor $I_1$ en in de punten -1, 0 en 1 voor $I_2$. Net zoals we op de figuur kunnen zien is de functie telkens in deze waarden nul. Hierdoor is $I_1 - I_2$ ook een benadering van nul. Deze waarde is dan kleiner dan de tolerantie waardoor er maar 1 recursiestap wordt uitgevoerd en deze waarde wordt dan ook teruggegeven. Hetzelfde gebeurt bij de simpsonmethode waarvoor bij $I_1$ en $I_2$ respectievelijk in -1, 0, 1 en -1, -0.5, 0, 0.5, 1 wordt ge\"evalueerd. Om dit probleem op te lossen gaat \verb|quad| er voor zorgen dat er ongelijk deelintervallen zijn. Dat kan je zien in het volgende stuk code:
+\begin{verbatim}
+% Initialize with three unequal subintervals.
+h = 0.13579*(b-a);
+x = [a a+h a+2*h (a+b)/2 b-2*h b-h b];
+\end{verbatim}
 \subsubsection*{(c) Het probleem bij $\mathop{\mathlarger{\int\limits_{0}^1\frac{1}{\sqrt(x)}dx}}$}
 Het probleem dat we hier krijgen is dat we de functie proberen te evalueren in punt waar hij niet gedefinieerd is. Namelijk het punt $x=0$. Hierdoor kijgen we een waarde $\infty$ voor zowel $I_1$ als $I_2$. Omdat er recursief altijd opnieuw wordt ge\"evalueerd wordt in $x=0$ dat telkens de waarde $\infty$ teruggeeft en bewerkingen hiermee ook $\infty$ teruggeven blijven we maar opnieuw recursief uitvoeren. Want de voorwaarde om met de recursie te stoppen: 
 \begin{verbatim}

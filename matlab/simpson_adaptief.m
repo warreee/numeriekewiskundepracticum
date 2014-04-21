@@ -12,6 +12,7 @@ I2 = simpson(f,a,b,4);
         a = a + eps;
         b = b -eps;
         I = simpson_adaptief(f,a,(a+b)/2,e) + simpson_adaptief(f,(a+b)/2,b,e);
+    end
  
 end
 
