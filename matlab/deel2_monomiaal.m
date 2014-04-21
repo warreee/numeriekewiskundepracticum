@@ -4,11 +4,15 @@ for i = 1:20
     M = horzcat(A(1:i,1:i),(b(1:i))');
     [Q,R] = qr(M);
     a = asubst(R);
-    g = poly2sym(a);
-    h = @(x) (exp(x)-g(x)).^2;
-    int = quad(h,-1,1,10^-8);
-    e(i) = sqrt(int);
+    %g = poly2sym(a);
+    %h = @(x) (exp(x)-g(x)).^2;
+    h = @(x) exp(x);
+    int = @(x) quad(exp(x),-1,1,10^-8)
+    %e(i) = sqrt(int);
+    
+    evalfout(int, 1:i,a)
 end
+
 %% (d)
 x = 1:20;
 %axis manual
