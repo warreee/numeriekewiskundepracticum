@@ -40,9 +40,6 @@ plot(hfun, (hfun).^2,'b--')
 plot(hfun, (hfun).^4,'r--')
 
 %Door de loglog-plot te gebruiken worden de functies gelineariseerd.
-%(b)
-% De fout gedraagt zich voor de trapeziumregel als O(h^2) en voor de regel
-% van Simpson als O(h^4). (Gedrag nog verklaren via handboek.)
 %% Adaptieve routine
 %(a)
 f1 = @exp;
@@ -131,6 +128,6 @@ xlabel('nauwkeurigheidsgraad: e')
 ylabel('Uitvoeringstijd')
 loglog(x,averagesimpson, 'r')
 loglog(x,averagequad, 'y')
-loglog(x,1.4*2.^(-log10(x)./0.6),'b--')
-loglog(x,0.006.*2.^(-log10(x)./1.2),'r--')
-loglog(x,0.6.*2.^(-log10(x)./1.2),'y--')
+loglog(x,0.234969897162454*2.^(-log10(x)./log10(4)),'b--')
+loglog(x,0.018550469029525*2.^(-log10(x)./log10(16)),'r--')
+loglog(x,0.010237530572578*2.^(-log10(x)./log10(16)),'y--')

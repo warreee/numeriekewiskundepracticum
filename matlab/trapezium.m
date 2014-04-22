@@ -1,5 +1,5 @@
 function [I] = trapezium( f,a,b,n )
-x = linspace(a,b,n+1)
+x = linspace(a,b,n+1);
 % n+1 ipv n want n is het aantal deelintervallen dit wordt bepaald door
 % n+1 punten
 h = (b-a)/n;

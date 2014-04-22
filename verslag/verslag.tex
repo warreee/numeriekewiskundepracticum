@@ -59,7 +59,7 @@
 
 \end{figure}
 
-Om een duidelijk beeld te krijgen van de benaderingen, hebben we in het geval van de exponenti\"ele functie een loglog-plot genomen en voor de andere functie een semilogy-plot. Het doel was om de lijnen zo veel mogelijk te linearisren. In het geval van de tweede functie was dit echter niet mogelijk.
+Om een duidelijk beeld te krijgen van de benaderingen, hebben we in het geval van de exponenti\"ele functie een loglog-plot genomen en voor de andere functie een semilogy-plot. Het doel was om de lijnen zo veel mogelijk te lineariseren. In het geval van de tweede functie was dit echter niet mogelijk.
 
 \subsubsection*{(b) De waardes $k$ in $O(h^k$) voor de integratieregels}
 
@@ -93,14 +93,14 @@ De fout veroorzaakt door de regel van Simpson gedraagt zich als $O(h^4)$. We kun
 	\vspace{-25pt}
 	\end{center}
 	\end{wrapfigure}
-We krijgen bij onze zelf gedefinieerde functies telkens waarden die nul benaderen i.p.v. de werkelijke waarde 1. Dit komt omdat we bij onze eerste recursiestap telkans gaan evalueren in een punt van de functie waar deze nul is. Zo evalueren we bij de trapeziummethode in de punten -1 en 1 voor $I_1$ en in de punten -1, 0 en 1 voor $I_2$. Net zoals we op de figuur kunnen zien is de functie telkens in deze waarden nul. Hierdoor is $I_1 - I_2$ ook een benadering van nul. Deze waarde is dan kleiner dan de tolerantie waardoor er maar 1 recursiestap wordt uitgevoerd en deze waarde wordt dan ook teruggegeven. Hetzelfde gebeurt bij de simpsonmethode waarvoor bij $I_1$ en $I_2$ respectievelijk in -1, 0, 1 en -1, -0.5, 0, 0.5, 1 wordt ge\"evalueerd. Om dit probleem op te lossen gaat \verb|quad| er voor zorgen dat er ongelijk deelintervallen zijn. Dat kan je zien in het volgende stuk code:
+We krijgen bij onze zelf gedefinieerde functies telkens waarden die nul benaderen i.p.v. de werkelijke waarde 1. Dit komt omdat we bij onze eerste recursiestap telkens gaan evalueren in een punt van de functie waar deze nul is. Zo evalueren we bij de trapeziummethode in de punten -1 en 1 voor $I_1$ en in de punten -1, 0 en 1 voor $I_2$. Net zoals we op de figuur kunnen zien is de functie telkens in deze waarden nul. Hierdoor is $I_1 - I_2$ ook een benadering van nul. Deze waarde is dan kleiner dan de tolerantie waardoor er maar 1 recursiestap wordt uitgevoerd en deze waarde wordt dan ook teruggegeven. Hetzelfde gebeurt bij de simpsonmethode waarvoor bij $I_1$ en $I_2$ respectievelijk in -1, 0, 1 en -1, -0.5, 0, 0.5, 1 wordt ge\"evalueerd. Om dit probleem op te lossen gaat \verb|quad| er voor zorgen dat er ongelijk deelintervallen zijn. Dat kan je zien in het volgende stuk code:
 \begin{verbatim}
 % Initialize with three unequal subintervals.
 h = 0.13579*(b-a);
 x = [a a+h a+2*h (a+b)/2 b-2*h b-h b];
 \end{verbatim}
 \subsubsection*{(c) Het probleem bij $\mathop{\mathlarger{\int\limits_{0}^1\frac{1}{\sqrt(x)}dx}}$}
-Het probleem dat we hier krijgen is dat we de functie proberen te evalueren in punt waar hij niet gedefinieerd is. Namelijk het punt $x=0$. Hierdoor kijgen we een waarde $\infty$ voor zowel $I_1$ als $I_2$. Omdat er recursief altijd opnieuw wordt ge\"evalueerd wordt in $x=0$ dat telkens de waarde $\infty$ teruggeeft en bewerkingen hiermee ook $\infty$ teruggeven blijven we maar opnieuw recursief uitvoeren. Want de voorwaarde om met de recursie te stoppen: 
+Het probleem dat we hier krijgen is dat we de functie proberen te evalueren in punt waar hij niet gedefinieerd is. Namelijk het punt $x=0$. Hierdoor krijgen we een waarde $\infty$ voor zowel $I_1$ als $I_2$. Omdat er recursief altijd opnieuw wordt ge\"evalueerd wordt in $x=0$ dat telkens de waarde $\infty$ teruggeeft en bewerkingen hiermee ook $\infty$ teruggeven blijven we maar opnieuw recursief uitvoeren. Want de voorwaarde om met de recursie te stoppen: 
 \begin{verbatim}
 if abs(I1 - I2) < e
 \end{verbatim}
@@ -119,7 +119,7 @@ if ~isfinite(y(7))
     fcnt = fcnt+1;
 end
 \end{verbatim}
-\verb|quad| checkt dus of de eindpunten niet oneindig zijn en als dit zo is dan word er een kleine waarde bij opgeteld of afgetrokken. Afhangeklijk of het links of rechts is, dat oneindig als waarde teruggeeft.
+\verb|quad| checkt dus of de eindpunten niet oneindig zijn en als dit zo is dan word er een kleine waarde bij opgeteld of afgetrokken. Afhankelijk of het links of rechts is, dat oneindig als waarde teruggeeft.
 \subsubsection*{(d) De uitvoeringstijd in functie van e }
 
 \begin{figure}[H]
@@ -139,11 +139,11 @@ end
 	\caption*{}
 	\end{figure}
 	
-We hebben hier gekozen voor een semilogy-plot, omdat op deze figuur de lijnen het meest recht liepen.
+We hebben hier gekozen voor een semilogy-plot. Hier is immers het overgangspunt het duidelijkst op te zien.
 
 \subsubsection*{(e) Benaderings- of abrekingsfout?}
 
-Het eerste, dalende deel is te wijten aan de benaderingsfouten. Dit stuk daalt, want als de graad stijgt kunnen we de functie steeds beter en beter benaderen. Vanaf een bepaald moment (hier bij een fout van $10^{-6}$) nemen echter de afrondingsfouten de overhand en gaat de totale fout weer stijgen. Het stijgende tweede deel is dus te wijten aan afrondingsfouten.
+Het eerste, dalende deel is te wijten aan de benaderingsfouten. Dit stuk daalt, want als de graad stijgt kunnen we de functie steeds beter en beter benaderen. Vanaf een bepaald moment (hier bij een fout van $10^{-8}$) nemen echter de afrondingsfouten de overhand en gaat de totale fout weer stijgen. Het stijgende tweede deel is dus te wijten aan afrondingsfouten.
 
 \subsubsection*{(f) Convergentiesnelheid}
 
@@ -163,16 +163,16 @@ De convergentiesnelheid gedraagt zich als $O(8^{-n})$ met $n$ de graad van $g$.
 	\caption*{Perturbaties op A(rood), b(blauw)}
 	\end{figure}
 
-De groene lijn geeft aan waar $10^{-8}$. We kunnen dus duidelijk zien dat op veelvoud na $10^{-8}$ zijn. Met andere woorden ze zijn van grootorde $10^{-8}$.
+De groene lijn geeft aan waar $10^{-8}$ is. We kunnen dus duidelijk zien dat beide lijnen van grootteorde $10^{-8}$ zijn.
 
 \subsubsection*{(i) perturbatie op a}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{22i1.png}
-	\caption*{Perturbaties op a(geel) en tol vermenigvuldigd met het conditiegetal(groen) bijgevoegd}
+	\caption*{Perturbaties op a(geel) en tol vermenigvuldigd met het conditiegetal(groen) bijgevoegd bij de vorige grafiek.}
 	\end{figure}
-	
+De perturbaties stijgen systematisch, naarmate dat de graad stijgt. De conditie van de matrix blijf lange tijd zeer goed, tot bij een graad tussen 18 en 19 waar de conditie ineens heel slecht wordt.
 \section{Tijdsbesteding}
 \begin{center}
 \begin{tabular}{ c || c }

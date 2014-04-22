@@ -6,11 +6,10 @@ for i = 1:20
     a = asubst(R);
     %g = poly2sym(a);
     %h = @(x) (exp(x)-g(x)).^2;
-    h = @(x) exp(x);
-    int = @(x) quad(exp(x),-1,1,10^-8)
+   % int = @(x) quad(exp(x),-1,1,10^-8)
     %e(i) = sqrt(int);
-    
-    evalfout(@exp, 1:i,a)
+    x = linspace(-1,1,10);
+    evalfout(@exp,a,x)
 end
 
 %% (d)

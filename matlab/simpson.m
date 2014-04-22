@@ -1,7 +1,7 @@
 function [ I ] = simpson( f,a,b,n )
 % de regel van simpson gebruikt een even aantal deelintervallen, dus n zou
 % bij het ingeven al even moeten zijn.???
-x = linspace(a,b,n+1)
+x = linspace(a,b,n+1);
 m = n/2;
 h = (b-a)/n;
 y = 0;
