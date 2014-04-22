@@ -1,15 +1,12 @@
 %% (c)
-[A,b] = stelsel_monomiaal(@exp,20)
+[A,b] = stelsel_monomiaal(@exp,20);
 for i = 1:20
     M = horzcat(A(1:i,1:i),(b(1:i))');
     [Q,R] = qr(M);
     a = asubst(R);
-    %g = poly2sym(a);
-    %h = @(x) (exp(x)-g(x)).^2;
-   % int = @(x) quad(exp(x),-1,1,10^-8)
-    %e(i) = sqrt(int);
-    x = linspace(-1,1,10);
-    evalfout(@exp,a,x)
+ 
+    int = quad(@(x) evalfout(@exp,a,x).^2,-1,1,10^-8)
+    e(i) = sqrt(int)
 end
 
 %% (d)
