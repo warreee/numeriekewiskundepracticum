@@ -4,9 +4,8 @@ for i = 1:20
     M = horzcat(A(1:i,1:i),(b(1:i))');
     [Q,R] = qr(M);
     a = asubst(R);
- 
-    int = quad(@(x) evalfout(@exp,a,x).^2,-1,1,10^-8)
-    e(i) = sqrt(int)
+    int = quad(@(x) evalfout(@exp,a,x).^2,-1,1,10^-8);
+    e(i) = sqrt(int);
 end
 
 %% (d)
