@@ -11,8 +11,6 @@ end
 
 %% (d)
 x = 1:20;
-%axis manual
-axis([0,20,10^-15,1])
 semilogy(x,e)
 xlabel('de graad: n')
 ylabel('de fout op g als benadering van f: e')

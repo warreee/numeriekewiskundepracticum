@@ -123,6 +123,7 @@ end
 \subsubsection*{(d) De uitvoeringstijd in functie van e }
 
 \begin{figure}[H]
+	\vspace{-20pt}
 	\centering
 	\includegraphics[width=0.7\textwidth]{12d1.png}
 	\caption*{De uitvoeringstijden van trapezium, Simpson en quad in respectievelijke kleuren blauw, rood en geel.}
@@ -131,10 +132,11 @@ end
 
 \subsubsection*{(f) Grafieken samen met de theoretische uitvoeringstijd}
 \begin{figure}[H]
+	\vspace{-20pt}
 	\centering
 	\includegraphics[width=0.7\textwidth]{12f.png}
-	\caption*{De theoretische uitvoeringstijd bijgevoegd bij vorige figuur}
 	\end{figure}
+De theoretische uitvoeringstijd bijgevoegd bij vorige figuur.
 \section{Deel 2: Kleinste kwadraten benadering van een functie}
 \subsection{Veeltermbenadering in monomiaalbasis}
 \subsubsection*{(d) De fout $||f-g||$ in functie van de graad}
@@ -142,29 +144,27 @@ end
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{22d1.png}
-	\caption*{}
+	\vspace{-10pt}
 	\end{figure}
-	
 We hebben hier gekozen voor een semilogy-plot. Hier is immers het overgangspunt het duidelijkst op te zien.
-
 \subsubsection*{(e) Benaderings- of abrekingsfout?}
 
-Het eerste, dalende deel is te wijten aan de benaderingsfouten. Dit stuk daalt, want als de graad stijgt kunnen we de functie steeds beter en beter benaderen. Vanaf een bepaald moment (hier bij een fout van $10^{-8}$) nemen echter de afrondingsfouten de overhand en gaat de totale fout weer stijgen. Het stijgende tweede deel is dus te wijten aan afrondingsfouten.
+Het eerste, dalende deel is te wijten aan de benaderingsfouten. Dit stuk daalt, want als de graad stijgt kunnen we de functie steeds beter en beter benaderen. Vanaf een bepaald moment (hier bij een graad van 8) nemen echter de afrondingsfouten de overhand en gaat de totale fout weer stijgen. Het stijgende tweede deel is dus te wijten aan afrondingsfouten.
 
 \subsubsection*{(f) Convergentiesnelheid}
 
 \begin{figure}[H]
 	\centering
+	\vspace{-20pt}
 	\includegraphics[width=0.7\textwidth]{22f1.png}
-	\caption*{}
+	\vspace{-10pt}
 	\end{figure}
-	
 De convergentiesnelheid gedraagt zich als $O(8^{-n})$ met $n$ de graad van $g$.
-
 \subsubsection*{(h) Perturbaties op A en b}
 
 \begin{figure}[H]
 	\centering
+	\vspace{-20pt}
 	\includegraphics[width=0.7\textwidth]{22h1.png}
 	\caption*{Perturbaties op A(rood), b(blauw)}
 	\end{figure}
@@ -178,7 +178,7 @@ De groene lijn geeft aan waar $10^{-8}$ is. We kunnen dus duidelijk zien dat bei
 	\includegraphics[width=0.7\textwidth]{22i1.png}
 	\caption*{Perturbaties op a(geel) en tol vermenigvuldigd met het conditiegetal(groen) bijgevoegd bij de vorige grafiek.}
 	\end{figure}
-De perturbaties stijgen systematisch, naarmate dat de graad stijgt. De conditie van de matrix blijf lange tijd zeer goed, tot bij een graad tussen 18 en 19 waar de conditie ineens heel slecht wordt.
+De perturbaties stijgen systematisch naarmate dat de graad stijgt. De conditie van de matrix blijf lange tijd zeer goed, tot bij een graad tussen 18 en 19 waar de conditie ineens heel slecht wordt. Dit verklaart de plotse sprong van de groene lijn.
 \section{Tijdsbesteding}
 \begin{center}
 \begin{tabular}{ c || c }
