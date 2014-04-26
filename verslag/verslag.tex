@@ -44,9 +44,8 @@
 \section{Deel 1: Numerieke integratie}
 \subsection{Vast Deelinterval}
 \subsubsection*{(a) Benadering van de integralen $\mathop{\mathlarger{\int\limits_{-1}^1e^xdx}}$ en  $\mathop{\mathlarger{\int\limits_{-5}^5\frac{1}{1+x^2}}}$}
-
+\vspace{-20pt}
 \begin{figure}[H]
-
 	\begin{subfigure}{0.5\textwidth}
 	\includegraphics[width=\textwidth]{11a1.png}
 	\caption*{$\int\limits_{-1}^1e^xdx$ met de trapeziumbenadering in het blauw en met de simpsonbenadering in het rood.}
@@ -66,9 +65,8 @@ Om een duidelijk beeld te krijgen van de benaderingen, hebben we in het geval va
 De fout die veroorzaakt wordt bij de trapeziumregel gedraagt zich als $O(h^2)$. De verklaring hiervoor is dat de integratiefout bij de trapeziumregel te schrijven is als \[ F_n = -\dfrac{(b-a)^3}{12n^2}f^{(2)}(\eta) \] voor een $\eta \in (a,b)$. De fout gedraagt zich bijgevolg als $O(n^{-2})$. Wat hetzelfde is als $O(h^2)$, per definitie van $h$.
 \\
 De fout veroorzaakt door de regel van Simpson gedraagt zich als $O(h^4)$. We kunnen immers de integratiefout bij de Simpsonregel schrijven als \[ F_n = -\dfrac{(b-a)^5}{180n^4}f^{(4)}(\eta) \] voor een $\eta \in (a,b)$. De fout gedraagt zich dan als $O(n^{-4})$. Dit is, per definitie van $h$, hetzelfde als $O(h^4)$.
-
+\vspace{-45pt}
 \begin{figure}[H]
-
 	\begin{subfigure}{0.5\textwidth}
 	\includegraphics[width=\textwidth]{11b1.png}
 	\caption*{$\int\limits_{-1}^1e^xdx$ het gedrag van de trapeziumbenadering met een blauwe stippellijn en het gedrag van de simpsonbenadering met een rode stippellijn.}
@@ -101,13 +99,9 @@ x = [a a+h a+2*h (a+b)/2 b-2*h b-h b];
 \end{verbatim}
 \subsubsection*{(c) Het probleem bij $\mathop{\mathlarger{\int\limits_{0}^1\frac{1}{\sqrt(x)}dx}}$}
 Het probleem dat we hier krijgen is dat we de functie proberen te evalueren in punt waar hij niet gedefinieerd is. Namelijk het punt $x=0$. Hierdoor krijgen we een waarde $\infty$ voor zowel $I_1$ als $I_2$. Omdat er recursief altijd opnieuw wordt ge\"evalueerd wordt in $x=0$ dat telkens de waarde $\infty$ teruggeeft en bewerkingen hiermee ook $\infty$ teruggeven blijven we maar opnieuw recursief uitvoeren. Want de voorwaarde om met de recursie te stoppen: 
-\begin{verbatim}
-if abs(I1 - I2) < e
-\end{verbatim}
-is nooit voldaan dan.
-\\
-\\
+\verb|if abs(I1 - I2) < e| is nooit voldaan dan.
 De methode \verb|quad| lost dit probleem op met volgende code:
+\vspace{-10pt}
 \begin{verbatim}
 % Fudge endpoints to avoid infinities.
 if ~isfinite(y(1))
@@ -130,11 +124,10 @@ end
 	\end{figure}
 \subsubsection*{(e) Gedrag van de uitvoeringstijd in functie de naukeurigheid e}
 
-We bepalen dit eerst voor de trapeziumregel. We veronderstellen de gegevens van in de opgave. De benaderde fout gedraagt zich in elk deelinterval dan als $O(h^3)$ (Dit kan men afleiden uit de theorie in het boek). Dus bij een verdubbeling van de graad $(n)$ deelt de fout door 8. Dit betekent dat we per itteratiestap net geen juist cijfer winnen $(log_{10}(8) = 0.9031)$. We verkrijgen dus in functie van $e$ $2^i$ deelintervallen met een constante uitvoeringstijd met $i =\dfrac{-log_{10}(e)}{log_{10}(8)}$ het aantal itteratiestappen. De uitvoeringstijd gedragt zich dan als $O(2^i)$
+We bepalen dit eerst voor de trapeziumregel. We veronderstellen de gegevens van in de opgave. De benaderde fout gedraagt zich in elk deelinterval dan als $O(h^3)$ (Dit kan men afleiden uit de theorie in het boek). Dus bij een verdubbeling van de graad $(n)$ deelt de fout door 8. Dit betekent dat we per iteratiestap net geen juist cijfer winnen $(log_{10}(8) = 0.9031)$. We verkrijgen dus in functie van $e$, $2^i$ deelintervallen met een constante uitvoeringstijd met $i =\dfrac{-log_{10}(e)}{log_{10}(8)}$ het aantal iteratiestappen. De uitvoeringstijd gedragt zich dan als $O(2^i)$
 \\
 \\
-Voor Simpson en quad gedraagt de uitvoeringstijd zich op een constante na hetzelfde. We veronderstellen opnieuw de gegevens van in de opgave. De benaderde fout gedraagt zich in elk deelinterval dan als $O(h^5)$ (Dit kan men afleiden uit de theorie in het boek). Dus bij een verdubbeling van de graad $(n)$ deelt de fout door 32. Dit betekent dat we per itteratiestap net 1.5 juist cijfers winnen $(log_{10}(32) = 1.5051)$. We verkrijgen dus in functie van $e$ $2^i$ deelintervallen met een constante uitvoeringstijd met $i =\dfrac{-log_{10}(e)}{log_{10}(32)}$ het aantal itteratiestappen. De uitvoeringstijd gedragt zich dan als $O(2^i)$
-
+Voor Simpson en quad gedraagt de uitvoeringstijd zich op een constante na hetzelfde. We veronderstellen opnieuw de gegevens van in de opgave. De benaderde fout gedraagt zich in elk deelinterval dan als $O(h^5)$ (Dit kan men afleiden uit de theorie in het boek). Dus bij een verdubbeling van de graad $(n)$ deelt de fout door 32. Dit betekent dat we per iteratiestap net 1.5 juist cijfers winnen $(log_{10}(32) = 1.5051)$. We verkrijgen dus in functie van $e$ $2^i$ deelintervallen met een constante uitvoeringstijd met $i =\dfrac{-log_{10}(e)}{log_{10}(32)}$ het aantal iteratiestappen. De uitvoeringstijd gedragt zich dan als $O(2^i)$
 \subsubsection*{(f) Grafieken samen met de theoretische uitvoeringstijd}
 \begin{figure}[H]
 	\vspace{-20pt}
@@ -143,47 +136,51 @@ Voor Simpson en quad gedraagt de uitvoeringstijd zich op een constante na hetzel
 	\end{figure}
 De theoretische uitvoeringstijd bijgevoegd bij vorige figuur.
 \section{Deel 2: Kleinste kwadraten benadering van een functie}
-\subsection{Veeltermbenadering in monomiaalbasis}
-\subsubsection*{(d) De fout $||f-g||$ in functie van de graad}
 
+\subsection{Veeltermbenadering in monomiaalbasis}
+
+\subsubsection*{(d) De fout $||f-g||$ in functie van de graad}
+We hebben hier gekozen voor een semilogy-plot. Hier is immers het overgangspunt het duidelijkst op te zien.
 \begin{figure}[H]
+\vspace{-35pt}
 	\centering
 	\includegraphics[width=0.7\textwidth]{22d1.png}
 	\vspace{-10pt}
 	\end{figure}
-We hebben hier gekozen voor een semilogy-plot. Hier is immers het overgangspunt het duidelijkst op te zien.
+
 \subsubsection*{(e) Benaderings- of abrekingsfout?}
 
 Het eerste, dalende deel is te wijten aan de benaderingsfouten. Dit stuk daalt, want als de graad stijgt kunnen we de functie steeds beter en beter benaderen. Vanaf een bepaald moment (hier bij een graad van 8) nemen echter de afrondingsfouten de overhand en gaat de totale fout weer stijgen. Het stijgende tweede deel is dus te wijten aan afrondingsfouten.
-
+\vspace{-20pt}
 \subsubsection*{(f) Convergentiesnelheid}
 
 \begin{figure}[H]
 	\centering
 	\vspace{-20pt}
 	\includegraphics[width=0.7\textwidth]{22f1.png}
-	\vspace{-10pt}
+	\vspace{-15pt}
 	\end{figure}
 De convergentiesnelheid gedraagt zich als $O(8^{-n})$ met $n$ de graad van $g$.
 \subsubsection*{(h) Perturbaties op A en b}
-
+De groene lijn geeft aan waar $10^{-8}$ is. We kunnen dus duidelijk zien dat beide lijnen van grootteorde $10^{-8}$ zijn.
 \begin{figure}[H]
 	\centering
-	\vspace{-20pt}
+	\vspace{-30pt}
 	\includegraphics[width=0.7\textwidth]{22h1.png}
 	\caption*{Perturbaties op A(rood), b(blauw)}
 	\end{figure}
-
-De groene lijn geeft aan waar $10^{-8}$ is. We kunnen dus duidelijk zien dat beide lijnen van grootteorde $10^{-8}$ zijn.
-
+\vspace{-30pt}
 \subsubsection*{(i) perturbatie op a}
-
+\vspace{-20pt}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{22i1.png}
+	\vspace{-10pt}
 	\caption*{Perturbaties op a(geel) en tol vermenigvuldigd met het conditiegetal(groen) bijgevoegd bij de vorige grafiek.}
 	\end{figure}
+\vspace{-10pt}
 De perturbaties stijgen systematisch naarmate dat de graad stijgt. De conditie van de matrix blijf lange tijd zeer goed, tot bij een graad tussen 18 en 19 waar de conditie ineens heel slecht wordt. Dit verklaart de plotse sprong van de groene lijn.
+\vspace{-5pt}
 \section{Tijdsbesteding}
 \begin{center}
 \begin{tabular}{ c || c }
