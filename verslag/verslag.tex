@@ -1,5 +1,5 @@
 \documentclass[11pt,a4paper]{article}
-
+\usepackage{color}
 \usepackage{graphicx}
 \usepackage{sidecap}
 \usepackage{mathtools}
@@ -50,6 +50,7 @@
 	\includegraphics[width=\textwidth]{11a1.png}
 	\caption*{$\int\limits_{-1}^1e^xdx$ met de trapeziumbenadering in het blauw en met de simpsonbenadering in het rood.}
 	\end{subfigure}
+	\hspace{10pt}
 	%Laat hier geen lijnen tussen anders komen ze niet meer horizontaal gelijk
 	\begin{subfigure}{0.5\textwidth}
 	\includegraphics[width=\textwidth]{11a2.png}
@@ -71,6 +72,7 @@ De fout veroorzaakt door de regel van Simpson gedraagt zich als $O(h^4)$. We kun
 	\includegraphics[width=\textwidth]{11b1.png}
 	\caption*{$\int\limits_{-1}^1e^xdx$ het gedrag van de trapeziumbenadering met een blauwe stippellijn en het gedrag van de simpsonbenadering met een rode stippellijn.}
 	\end{subfigure}
+	\hspace{10pt}
 	%Laat hier geen lijnen tussen anders komen ze niet meer horizontaal gelijk
 	\begin{subfigure}{0.5\textwidth}
 	\includegraphics[width=\textwidth]{11b2.png}
@@ -101,7 +103,7 @@ x = [a a+h a+2*h (a+b)/2 b-2*h b-h b];
 Het probleem dat we hier krijgen is dat we de functie proberen te evalueren in punt waar hij niet gedefinieerd is. Namelijk het punt $x=0$. Hierdoor krijgen we een waarde $\infty$ voor zowel $I_1$ als $I_2$. Omdat er recursief altijd opnieuw wordt ge\"evalueerd wordt in $x=0$ dat telkens de waarde $\infty$ teruggeeft en bewerkingen hiermee ook $\infty$ teruggeven blijven we maar opnieuw recursief uitvoeren. Want de voorwaarde om met de recursie te stoppen: 
 \verb|if abs(I1 - I2) < e| is nooit voldaan dan.
 De methode \verb|quad| lost dit probleem op met volgende code:
-\vspace{-10pt}
+
 \begin{verbatim}
 % Fudge endpoints to avoid infinities.
 if ~isfinite(y(1))
@@ -140,7 +142,7 @@ De theoretische uitvoeringstijd bijgevoegd bij vorige figuur.
 \subsection{Veeltermbenadering in monomiaalbasis}
 
 \subsubsection*{(d) De fout $||f-g||$ in functie van de graad}
-We hebben hier gekozen voor een semilogy-plot. Hier is immers het overgangspunt het duidelijkst op te zien.
+We hebben hier gekozen voor een semilogy-plot. Hier is immers het overgangspunt, waar de afbrekingsfouten het overnemen van de benaderingsfouten, het duidelijkst op te zien.
 \begin{figure}[H]
 \vspace{-35pt}
 	\centering
@@ -150,7 +152,7 @@ We hebben hier gekozen voor een semilogy-plot. Hier is immers het overgangspunt 
 
 \subsubsection*{(e) Benaderings- of abrekingsfout?}
 
-Het eerste, dalende deel is te wijten aan de benaderingsfouten. Dit stuk daalt, want als de graad stijgt kunnen we de functie steeds beter en beter benaderen. Vanaf een bepaald moment (hier bij een graad van 8) nemen echter de afrondingsfouten de overhand en gaat de totale fout weer stijgen. Het stijgende tweede deel is dus te wijten aan afrondingsfouten.
+Het eerste, dalende deel is te wijten aan de benaderingsfouten. Dit stuk daalt, want als de graad stijgt kunnen we de functie steeds beter en beter benaderen. Vanaf een bepaald moment (hier bij een graad van 8) nemen echter de afbrekingsfouten de overhand en gaat de totale fout weer stijgen. Het stijgende tweede deel is dus te wijten aan afbrekingsfouten.
 \vspace{-20pt}
 \subsubsection*{(f) Convergentiesnelheid}
 
@@ -179,7 +181,7 @@ De groene lijn geeft aan waar $10^{-8}$ is. We kunnen dus duidelijk zien dat bei
 	\caption*{Perturbaties op a(geel) en tol vermenigvuldigd met het conditiegetal(groen) bijgevoegd bij de vorige grafiek.}
 	\end{figure}
 \vspace{-10pt}
-De perturbaties stijgen systematisch naarmate dat de graad stijgt. De conditie van de matrix blijf lange tijd zeer goed, tot bij een graad tussen 18 en 19 waar de conditie ineens heel slecht wordt. Dit verklaart de plotse sprong van de groene lijn.
+De perturbaties op a stijgen logischerwijs systematisch naarmate dat de graad stijgt. De conditie van de matrix blijf lange tijd zeer goed, tot bij een graad tussen 18 en 19 waar de conditie ineens heel slecht wordt. Dit verklaart de plotse sprong van de groene lijn.
 \vspace{-5pt}
 \section{Tijdsbesteding}
 \begin{center}

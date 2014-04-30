@@ -48,7 +48,6 @@ ta1 = trapezium_adaptief(f1,-1,1,10^-8);
 sa1 = simpson_adaptief(f1,-1,1,10^-8);
 ta2 = trapezium_adaptief(f2,-5,5,10^-8);
 sa2 = simpson_adaptief(f2,-5,5,10^-8);
-%(b) Dit stuk moeten we nog deftig afmaken.
 %echte waarde is 1
 format long
 f3 = @ (x) sin(2*pi*x).^2;
@@ -61,7 +60,7 @@ f4 = @ (x) 1./sqrt(x);
 ta3 = trapezium_adaptief(f4,0,1,10^-8)
 sa3 = simpson_adaptief(f4,0,1,10^-8)
 Q = quad(f4,0,1,10^-8)
-% quad gebruikt een stopcriterium als het aantal recursies te veel wordt.
+
 %% uitvoeringstijd
 f2 = @(x) 1./(1+(x.^2));
 Reps = 10;
@@ -72,17 +71,17 @@ tic;
 for i = 1:Reps
     t = trapezium_adaptief(f2,-5,5,10^-8);
 end
-averagetime1 = toc/Reps
+averagetime1 = toc/Reps;
 tic;
 for i = 1:Reps
     s = simpson_adaptief(f2,-5,5,10^-8);
 end
-averagetime2 = toc/Reps
+averagetime2 = toc/Reps;
 tic;
 for i = 1:Reps
     q = quad(f2,-5,5,10^-8);
 end
-averagetime3 = toc/Reps
+averagetime3 = toc/Reps;
 %(d)
 for i=1:10
     x(i) = 10^-i;
@@ -94,7 +93,7 @@ for i=1:10
     end
     averagetrapezium(i) = toc/Reps;
 end
-averagetrapezium
+averagetrapezium;
 for i=1:10
     Reps = 10;
     averagesimpson(i) = 0;
@@ -104,7 +103,7 @@ for i=1:10
     end
     averagesimpson(i) = toc/Reps;
 end
-averagesimpson
+averagesimpson;
 for i=1:10
     Reps = 10;
     averagequad(i) = 0;
@@ -114,7 +113,7 @@ for i=1:10
     end
     averagequad(i) = toc/Reps;
 end
-averagequad
+averagequad;
 loglog(x,averagetrapezium, 'b')
 hold on
 xlabel('nauwkeurigheidsgraad: e')
